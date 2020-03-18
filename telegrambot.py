@@ -1,8 +1,10 @@
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 from telegram.ext.dispatcher import run_async
+from datetime import datetime
 import requests
 import re
 import random
+import threading
 
 # Adds the commands to the bot
 def dp_add_handler(dp, cmddict):
@@ -47,23 +49,44 @@ def commands(update, context):
     commandmsg = """ This is Ranay's Bot.
     \n/commands - Prints out the command list
     \n/temp - Returns a random temperature
-    \n/bop - Returns a picture of a random dog"""
+    \n/bop - Returns a picture of a random dog
+    \n/currenttime - Returns current time"""
     chat_id = get_chat_id(update)
     context.bot.send_message(chat_id=chat_id, text=commandmsg)
+
+def currenttime(update, context):
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    chat_id = get_chat_id(update)
+    timemsg = "Current Time = " + current_time
+    context.bot.send_message(chat_id=chat_id, text=timemsg)
+
+def shutdown():
+    print("Bot is shutting down")
+    updater.stop()
+    updater.is_idle = False
+    print("Bot has shut down")
+
+def stop(update, context):
+    threading.Thread(target=shutdown).start()
 
 # List of the command to be use for add_handler
 cmddict = {
     'bop': bop,
     'temp': temp,
     'commands': commands,
+    'currenttime' : currenttime,
+    'stop' : stop,
 }
 
 def main():
-    updater = Updater('908776847:AAEpVQDnjYTweN5s7y6_RcxUbl2J1LrGyH0', use_context=True)
+    print("Bot is starting up")
     dp = updater.dispatcher
+    print("Bot has started")
     dp_add_handler(dp,cmddict)
     updater.start_polling()
     updater.idle()
 
+updater = Updater('908776847:AAEpVQDnjYTweN5s7y6_RcxUbl2J1LrGyH0', use_context=True)
 if __name__ == '__main__':
     main()
