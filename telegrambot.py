@@ -54,6 +54,7 @@ def commands(update, context):
     chat_id = get_chat_id(update)
     context.bot.send_message(chat_id=chat_id, text=commandmsg)
 
+# Display current time
 def currenttime(update, context):
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
@@ -61,6 +62,7 @@ def currenttime(update, context):
     timemsg = "Current Time = " + current_time
     context.bot.send_message(chat_id=chat_id, text=timemsg)
 
+# Shuts down the bot
 def shutdown():
     print("Bot is shutting down")
     updater.stop()
