@@ -89,6 +89,6 @@ def main():
     updater.start_polling()
     updater.idle()
 
-updater = Updater('908776847:AAEpVQDnjYTweN5s7y6_RcxUbl2J1LrGyH0', use_context=True)
+updater = Updater('<Discord Bot ID>', use_context=True)
 if __name__ == '__main__':
     main()
