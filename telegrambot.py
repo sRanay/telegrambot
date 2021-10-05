@@ -89,6 +89,6 @@ def main():
     updater.start_polling()
     updater.idle()
 
-updater = Updater('<Discord Bot ID>', use_context=True)
+updater = Updater('<Telegram Bot ID>', use_context=True)
 if __name__ == '__main__':
     main()
