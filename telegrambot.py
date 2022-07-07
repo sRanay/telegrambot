@@ -37,10 +37,10 @@ def bop(update, context):
     chat_id = get_chat_id(update)
     context.bot.send_photo(chat_id=update.message.chat_id, photo=url)
 
-#Sends a random temperature to the user
-def temp(update, context):
-    tempnum = round(random.uniform(35.8,37.0),1)
-    msg = "Your current temperature is " + str(tempnum)
+#Send a Random Number between 1 to 10
+def rng(update, context):
+    tempnum = round(random.uniform(1,10),1)
+    msg = "The number is " + str(tempnum)
     chat_id = get_chat_id(update)
     context.bot.send_message(chat_id=chat_id, text=msg)
 
@@ -48,7 +48,7 @@ def temp(update, context):
 def commands(update, context):
     commandmsg = """ This is Ranay's Bot.
     \n/commands - Prints out the command list
-    \n/temp - Returns a random temperature
+    \n/rng - Returns a random temperature
     \n/bop - Returns a picture of a random dog
     \n/currenttime - Returns current time"""
     chat_id = get_chat_id(update)
@@ -75,7 +75,7 @@ def stop(update, context):
 # List of the command to be use for add_handler
 cmddict = {
     'bop': bop,
-    'temp': temp,
+    'rng': rng,
     'commands': commands,
     'currenttime' : currenttime,
     'stop' : stop,
