@@ -89,7 +89,7 @@ def commands(update, context):
 # currenttime Function
 # Display current time
 def currenttime(update, context):
-    now = datetime.now()
+    now = datetime.datetime.now()
     current_time = now.strftime("%H:%M:%S")
     chat_id = get_chat_id(update)
     timemsg = "Current Time = " + current_time
